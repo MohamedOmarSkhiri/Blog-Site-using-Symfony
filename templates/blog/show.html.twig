@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% form_theme commentForm 'bootstrap_4_layout.html.twig' %}
+
+{% block title %} 
+Article 
+{% endblock %}
+{% block body %}
+<style>
+.articles{
+    border-radius:10px;
+    box-shadow:0 4px 16px rgba(0,0,0,.25);
+    padding:16px 20px;
+  
+}
+  img{
+      border-radius:10px;
+      box-shadow:0 4px 16px rgba(0,0,0,.25);
+      margin:10px; 
+    }
+    
+</style>
+<section class="articles mt-5">
+<article class="mb-5"> 
+<article>
+<h2>{{article.title}}<h2>
+<div class="metadata">
+written on {{article.createdAt | date('d-m-y')}} at {{article.createdAt | date('H:i')}} 
+<span class="badge badge-danger">
+{{article.Category.title}}
+</span>
+<span class="badge badge-secondary">{{article.comments | length}} comments</span>
+</div>
+<div class="content">
+<img src="{{article.image}}">
+<p>{{article.content}}</p>
+<a  class="btn btn-info"href="#"> Read more </a>
+</div>
+</artictle>
+</section>
+<a href="{{path('edit_article', {'id': article.id}  )}}" class="btn btn-warning mt-5 mb-5">Modify </a>
+<hr>
+<section id="comments">
+{% for comment in article.comments %}
+<div class="comment">
+        <div class="row">
+                <div class="md-col-3" style="color:red;">
+                (<small>{{comment.createdAt | date('d-m-y')}} at {{comment.createdAt | date('H:i') }}}</small>){{comment.author}}
+                </div>
+        </div>
+        <P> {{comment.content}}</p>
+</div>
+{% endfor %}
+</section>
+<hr>
+<section>
+<h2> Add a comment to this article  </h2>
+{{form_start(commentForm)}}
+{{form_widget(commentForm)}}
+<button class="btn btn-success mb-5">Add a comment</button>
+{{form_end(commentForm)}}
+</section>
+
+{% endblock %}

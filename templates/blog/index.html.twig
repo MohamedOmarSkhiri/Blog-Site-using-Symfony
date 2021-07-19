@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+<style>
+.articles{
+    border-radius:10px;
+    box-shadow:0 4px 16px rgba(0,0,0,.25);
+    padding: 16px 20px;
+}
+img{
+    border-radius:10px;
+    box-shadow:0 4px 16px rgba(0,0,0,.25);
+    padding: 16px 20px;
+    margin:10px;
+}
+</style>
+<center><i><h1>Welcome to TnProg</h1></i></center>
+{% for article in articles %}
+<section class="articles mt-5">
+<article class="mb-5">
+<article>
+<h2>{{article.title}}<h2>
+<div class="metadata">
+written on {{article.createdAt | date('d-m-y')}} at {{article.createdAt | date('H:i')}}
+<span class="badge badge-danger">{{article.Category.title}}</span>
+</div>
+<div class="content">
+<img src="{{article.image}}">
+<p>{{article.content}}</p>
+<a  class="btn btn-info"href="{{path('show_article',{'id': article.id})}}"> Read more </a>
+</div>
+</artictle>
+</section>
+
+{% endfor %}
+
+<div class="navigation mt-5">
+    {{ knp_pagination_render(articles) }}
+</div>
+
+{% endblock %}

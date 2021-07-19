@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}Welcome!{% endblock %}</title>
+{% block stylesheets %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
+{% endblock %}
+</head>
+<body>
+<style>
+html,body{
+    font-family: 'Stint Ultra Condensed', cursive;
+}
+</style>
+<h2>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+<a class="navbar-brand" href="#">TnProg</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarColor03">
+<ul class="navbar-nav me-auto">
+<li class="nav-item">
+<a class="nav-link active" href="#">Home
+<span class="visually-hidden">(current)</span>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{{path('new_article')}}">write an article</a>
+</li>
+</div>
+</li>
+</ul>
+<form class="d-flex">
+<a class="nav-link" href="#">Log in</a>
+<a class="nav-link" href="#">Log out</a>
+</form>
+</div>
+</div>
+</nav>
+</h2>
+<div class="container">
+{% block body %}{% endblock %}
+</div> 
+{% block javascripts%}
+<script src="//code.jquery.com/jquery.js"></script>
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+{% endblock %}
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
+</body>
+</html>
